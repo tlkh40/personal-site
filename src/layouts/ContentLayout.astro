@@ -1,0 +1,9 @@
+---
+import BaseLayout from "./BaseLayout.astro"
+---
+
+<BaseLayout title={Astro.props.frontmatter.title}>
+    <div class="w-full prose max-w-none prose-xl prose-invert prose-h2:mb-2">
+        <slot />
+    </div>
+</BaseLayout>
