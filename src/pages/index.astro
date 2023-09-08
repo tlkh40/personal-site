@@ -1,0 +1,51 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<main class="max-h-[100svh] overflow-y-scroll snap snap-y snap-mandatory">
+			<div class="snap-start">
+				<Header />
+				<section transition:animate="slide" class="h-[calc(100svh-var(--header))] flex items-center">
+					<div class="px-2 container mx-auto">
+						<h2 class="font-bold text-5xl mb-2">Hey! 👋</h2>
+						<p class="text-xl md:w-2/5 tracking-wide">
+							I'm Bryan, but I'm usually known as "tlkh40". I'm a software developer
+							mainly focusing on frontend development.
+						</p>
+					</div>
+				</section>
+			</div>
+			<div class="snap-start h-[100svh]">
+				<section transition:animate="slide" class="h-[100svh] flex items-center justify-end bg-gradient-to-b from-[--bg] to-[--secondary]">
+					<div class="px-2 container mx-auto">
+						<h2 class="font-bold text-5xl mb-2">About me</h2>
+						<p class="text-xl tracking-wide">
+							In 2021 I started programming when a friend invited me to make
+							an image hosting service with him. While we did garner some users,
+							the service itself wasn't great. After that project, I started
+							doing react to modify the pterodactyl panel. Since then I've worked
+							and lead the development of some projects such as
+							<a href="https://staging-docs.berrybyte.net/lime/overview" class="underline underline-offset-2 decoration-[--primary] decoration-1 hover:decoration-2">
+								Berrybyte's lime</a>!
+						</p>
+					</div>
+				</section>
+			</div>
+			<div class="snap-start bg-[--secondary]">
+				<section class="h-[calc(100svh-var(--footer))] flex justify-center items-center text-center">
+					<span class="text-4xl">"👌👌✌✌😁" - 2023</span>
+				</section>
+				<Footer />
+			</div>
+		</main>
+	</body>
+</html>
