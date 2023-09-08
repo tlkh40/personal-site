@@ -3,6 +3,7 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { Icon } from 'astro-icon';
 ---
 
 <!DOCTYPE html>
@@ -11,7 +12,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 	</head>
 	<body>
-		<main class="max-h-[100svh] overflow-y-scroll snap snap-y snap-mandatory">
+		<main class="max-h-[100svh] overflow-y-scroll overflow-x-hidden snap snap-y snap-mandatory">
 			<div class="snap-start">
 				<Header />
 				<section transition:animate="slide" class="h-[calc(100svh-var(--header))] flex items-center">
@@ -25,7 +26,13 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				</section>
 			</div>
 			<div class="snap-start h-[100svh]">
-				<section transition:animate="slide" class="h-[100svh] flex items-center justify-end bg-gradient-to-b from-[--bg] to-[--secondary]">
+				<section transition:animate="slide" class="h-[100svh] flex items-center justify-end bg-gradient-to-b from-[--bg] to-[--secondary] relative isolate overflow-hidden">
+					<div class="absolute inset-0 bg-gray-800 z-[-1] bg-opacity-70"></div>
+					<div class="ducks">
+						<Icon name="noto:duck" class="duck" />
+						<Icon name="noto:baby-chick" class="duck" />
+						<Icon name="noto:cat" class="duck" />
+					</div>
 					<div class="px-2 container mx-auto">
 						<h2 class="font-bold text-5xl mb-2">About me</h2>
 						<p class="text-xl tracking-wide">
@@ -49,3 +56,52 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 		</main>
 	</body>
 </html>
+
+
+<style>
+	.duck {
+		z-index: -2;
+		animation: moveleduck 10s linear infinite;
+		position: absolute;
+		height: 8rem;
+		width: 8rem;
+		translate: var(--xb) var(--yb);
+	}
+	
+	.duck:nth-child(1) {
+		--xa: 100vw;
+		--xb: -100vw;
+		--ya: -75vh;
+		--yb: 110vh;
+		--rotation: 720deg;
+	}
+
+	.duck:nth-child(2) {
+		--xa: -10vw;
+		--xb: 75vw;
+		--ya: 75vh;
+		--yb: -110vh;
+		--rotation: 720deg;
+	}
+
+	.duck:nth-child(3) {
+		--xa: 100vw;
+		--xb: -100vw;
+		--ya: 25vh;
+		--yb: 0vh;
+		--rotation: 720deg;
+	}
+
+	@keyframes moveleduck {
+		0% {
+			rotate: 0deg;
+			/* transform: translateX(var(--x-b)) translateY(var(--y-b)); */
+			translate: var(--xb) var(--yb);
+		}
+		100% {
+			rotate: var(--rotation);
+			/* transform: translateX(var(--x-b)) translateY(var(--y-b)); */
+			translate: var(--xa) var(--ya);
+		}   
+	}
+</style>
